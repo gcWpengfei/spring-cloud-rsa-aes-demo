@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: aes-rsa-util
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: wpf
+Implementation-Vendor-Id: Aes-Rsa
+Build-Jdk: 1.8.0_60
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/com.wpf/aes-rsa-util
+Created-By: Maven Integration for Eclipse
+

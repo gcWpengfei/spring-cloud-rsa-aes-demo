@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: aes-rsa-server
+ 
+ #regisrty eureka
+ #eureka.client.serviceUrl.defaultZone=http://127.0.0.1:8761/eureka/
+ 
+eureka: 
+  client:
+    serviceUrl: 
+      defaultZone: http://127.0.0.1:8761/eureka/
