@@ -1,6 +1,7 @@
 package com.wpf.controller;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -17,6 +18,8 @@ import com.wpf.util.AES;
 import com.wpf.util.EncryUtil;
 import com.wpf.util.RSA;
 import com.wpf.util.Req;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/")
@@ -104,8 +107,10 @@ public class ClientController {
 	}
 	
 	@PostMapping("/hello")
-	public Map<String, String> hello(@RequestParam("data") String data, @RequestParam("encryptkey") String encryptkey ) {
-		
+	public Map<String, String> hello(HttpServletRequest httpServletRequest,
+									 @RequestParam("data") String data, @RequestParam("encryptkey") String encryptkey ) {
+
+
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("data", data);
 		map.put("encryptkey", encryptkey);
