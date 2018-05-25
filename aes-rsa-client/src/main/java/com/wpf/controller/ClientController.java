@@ -21,6 +21,8 @@ public class ClientController {
 	private TestFeign testFeign;
 
 	// 客户端 将原始私钥的转换成PKCS8格式的私钥
+	
+	
 		public static final String clientPrivateKey = "MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAM9mfM/BTr2IPPtB" + 
 				"GyDYo1BkDbdBgfgDhvY+dFB22hF5t5aG1g1KW6CdQog7INM95YI3+vHMdlPvmkd8" + 
 				"vEjcBlLkd0EWvRIV7wv5upGO8TJ+vYor4EaoR7sx47996pm/TZD5jSWGesRrhTI4" + 
