@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ public class ParamInterceptor implements HandlerInterceptor {
 	@Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
 
+       /* Map<String,String> params = new HashMap<String,String>();
         Map<String, String[]> requestParams = httpServletRequest.getParameterMap();
         for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext();) {
             String name = (String) iter.next();
@@ -32,11 +34,11 @@ public class ParamInterceptor implements HandlerInterceptor {
             }
             //乱码解决，这段代码在出现乱码时使用。如果mysign和sign不相等也可以使用这段代码转化
             //valueStr = new String(valueStr.getBytes("ISO-8859-1"), "gbk");
-            //params.put(name, valueStr);
+            params.put(name, valueStr);
 
             LOG.info(valueStr);
 
-        }
+        }*/
 
         return true;
        

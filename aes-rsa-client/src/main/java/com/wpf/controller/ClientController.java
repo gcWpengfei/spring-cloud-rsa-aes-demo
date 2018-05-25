@@ -108,13 +108,60 @@ public class ClientController {
 	
 	@PostMapping("/hello")
 	public Map<String, String> hello(HttpServletRequest httpServletRequest,
-									 @RequestParam("data") String data, @RequestParam("encryptkey") String encryptkey ) {
+									 @RequestParam("data") String data, @RequestParam("encryptkey") String encryptkey ,
+									 @RequestParam("test") String test) {
 
 
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("data", data);
 		map.put("encryptkey", encryptkey);
+		map.put("test", test);
 		return map;
 	}
 
+	@PostMapping("/map")
+	public Map<String, String> map(HttpServletRequest request,
+									 @RequestParam("data") String data, @RequestParam("encryptkey") String encryptkey ,
+									 @RequestParam("test") String test) {
+
+
+		//获取支付宝POST过来反馈信息
+		Map<String,String> params = new HashMap<String,String>();
+		Map requestParams = request.getParameterMap();
+		for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext();) {
+			String name = (String) iter.next();
+			String[] values = (String[]) requestParams.get(name);
+			String valueStr = "";
+			for (int i = 0; i < values.length; i++) {
+				valueStr = (i == values.length - 1) ? valueStr + values[i]
+						: valueStr + values[i] + ",";
+			}
+			//乱码解决，这段代码在出现乱码时使用。如果mysign和sign不相等也可以使用这段代码转化
+			//valueStr = new String(valueStr.getBytes("ISO-8859-1"), "gbk");
+			params.put(name, valueStr);
+		}
+		return params;
+	}
+
+	/**
+	 * 校验是否能正确获取到所需参数
+	 *
+	 * @Author: wpf
+	 * @Date: 18:15 2018/5/25
+	 * @Description: 
+	 * @param  * @param null  
+	 * @return   
+	 */
+	@PostMapping("/param")
+	public Map<String, String> param(HttpServletRequest httpServletRequest,
+									 @RequestParam("userid") String userid, @RequestParam("phone") String phone ,
+									 @RequestParam("test") String test) {
+
+
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userid", userid);
+		map.put("phone", phone);
+		map.put("test", test);
+		return map;
+	}
 }
