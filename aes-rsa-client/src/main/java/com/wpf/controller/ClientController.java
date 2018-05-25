@@ -20,7 +20,7 @@ public class ClientController {
 	@Autowired
 	private TestFeign testFeign;
 
-	// ¿Í»§¶Ë ½«Ô­Ê¼Ë½Ô¿µÄ×ª»»³ÉPKCS8¸ñÊ½µÄË½Ô¿
+	// å®¢æˆ·ç«¯ å°†åŸå§‹ç§é’¥çš„è½¬æ¢æˆPKCS8æ ¼å¼çš„ç§é’¥1223
 	
 	
 		public static final String clientPrivateKey = "MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAM9mfM/BTr2IPPtB" + 
@@ -38,13 +38,13 @@ public class ClientController {
 				"VM7uRIdEqnnx7oMT4/+1XpwXqqZL6Qu69ULw6r8OtCiCRUzvLBr1nquWxhTastQ0" + 
 				"X5uHQww065oHGwM=";
 
-		// ¿Í»§¶Ë ¹«Ô¿
+		// å®¢æˆ·ç«¯ å…¬é’¥
 		public static final String clientPublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDPZnzPwU69iDz7QRsg2KNQZA23" + 
 				"QYH4A4b2PnRQdtoRebeWhtYNSlugnUKIOyDTPeWCN/rxzHZT75pHfLxI3AZS5HdB" + 
 				"Fr0SFe8L+bqRjvEyfr2KK+BGqEe7MeO/feqZv02Q+Y0lhnrEa4UyOApG1RnuJdOq" + 
 				"3wWfD0TtlyjaahkfPwIDAQAB";
 		
-		// ·şÎñ¶Ë ½«Ô­Ê¼Ë½Ô¿µÄ×ª»»³ÉPKCS8¸ñÊ½µÄË½Ô¿
+		// æœåŠ¡ç«¯ å°†åŸå§‹ç§é’¥çš„è½¬æ¢æˆPKCS8æ ¼å¼çš„ç§é’¥
 		public static final String  serverPrivateKey = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAIclo1lSxru9S6eg" + 
 				"YImIZCzSsd5xkMAtKXput7Quw6yhZRbO4j1OFPhNHzBmZmVaqAUvr1C/dWgnmFui" + 
 				"8NPa4uGz+5zWGWdcfyR0EQvyMamlPBA+6oo2UVLDgtPNKkz2eJy0UwWKN212Qz+H" + 
@@ -60,7 +60,7 @@ public class ClientController {
 				"kDBgscTgtkXgQeAvXtBbo7aAEZQlO4MlYaJlpsYhsgriAjdugUdYjoLo7PMVVRcT" + 
 				"YxkFhvp0UEtAZQ==";
 		
-		// ·şÎñ¶Ë ¹«Ô¿
+		// æœåŠ¡ç«¯ å…¬é’¥
 		public static final String  serverPublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCHJaNZUsa7vUunoGCJiGQs0rHe" + 
 				"cZDALSl6bre0LsOsoWUWzuI9ThT4TR8wZmZlWqgFL69Qv3VoJ5hbovDT2uLhs/uc" + 
 				"1hlnXH8kdBEL8jGppTwQPuqKNlFSw4LTzSpM9nictFMFijdtdkM/h2f74vOV/h40" + 
@@ -71,12 +71,12 @@ public class ClientController {
 
 		Req req = testFeign.serverRequest();
 
-		// ÑéÇ©
+		// éªŒç­¾
 		boolean passSign = EncryUtil.checkDecryptAndSign(req.getData(), req.getEncryptkey(), clientPublicKey,
 				serverPrivateKey);
 		Map<String, String> map = new HashMap<String, String>();
 		if (passSign) {
-			// ÑéÇ©Í¨¹ı
+			// éªŒç­¾é€šè¿‡
 			String aeskey = RSA.decrypt(req.getEncryptkey(), serverPrivateKey);
 			String data = AES.decryptFromBase64(req.getData(), aeskey);
 
@@ -87,9 +87,9 @@ public class ClientController {
 			
 			map.put("userId", userid);
 			map.put("phone", phone);
-			System.out.println("½âÃÜºóµÄÃ÷ÎÄ:userid:" + userid + " phone:" + phone);
+			System.out.println("è§£å¯†åçš„æ˜æ–‡:userid:" + userid + " phone:" + phone);
 		} else {
-			System.out.println("ÑéÇ©Ê§°Ü");
+			System.out.println("éªŒç­¾å¤±è´¥");
 			
 		}
 		return map;
