@@ -75,7 +75,7 @@ public class RequestFilter implements Filter {
     }
 
     /**
-     * 过滤器， 将加密的请求参数解密
+     * 过滤器， 将加密的请求参数解密， 使业务只关注业务操作即可
      *
      * @Author: wpf
      * @Date: 18:15 2018/5/25
