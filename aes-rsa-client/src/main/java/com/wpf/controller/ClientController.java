@@ -3,18 +3,23 @@ package com.wpf.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wpf.feign.TestFeign;
+import com.wpf.interceptor.ParamInterceptor;
 import com.wpf.util.AES;
 import com.wpf.util.EncryUtil;
 import com.wpf.util.RSA;
 import com.wpf.util.Req;
 
 @RestController
+@RequestMapping("/")
 public class ClientController {
 
 	@Autowired
@@ -63,9 +68,14 @@ public class ClientController {
 			"cZDALSl6bre0LsOsoWUWzuI9ThT4TR8wZmZlWqgFL69Qv3VoJ5hbovDT2uLhs/uc" + 
 			"1hlnXH8kdBEL8jGppTwQPuqKNlFSw4LTzSpM9nictFMFijdtdkM/h2f74vOV/h40" + 
 			"o4FHCZsGM9of9qY0dwIDAQAB";
-
+	private Logger LOG = Logger.getLogger(ParamInterceptor.class);
+	
+	
 	@RequestMapping(value = "/client")
 	public Map<String, String> client() throws Exception {
+		
+		 
+		 LOG.info("hello world");
 
 		Req req = testFeign.serverRequest();
 
@@ -90,6 +100,15 @@ public class ClientController {
 			System.out.println("验签失败");
 			
 		}
+		return map;
+	}
+	
+	@PostMapping("/hello")
+	public Map<String, String> hello(@RequestParam("data") String data, @RequestParam("encryptkey") String encryptkey ) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("data", data);
+		map.put("encryptkey", encryptkey);
 		return map;
 	}
 
