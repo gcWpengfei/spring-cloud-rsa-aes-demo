@@ -6,6 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.PriorityOrdered;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 在service层觉得数据源
@@ -24,9 +28,16 @@ public class TestAopInService implements PriorityOrdered {
 
 
 	@Before("execution(* com.wpf.controller..*.*(..)) "
-			+ " and @annotation(com.wpf.annotation.TestAnno) ")
+			+ " && @annotation(com.wpf.annotation.TestAnno) ")
 	public void setWriteDataSourceType() {
-	   	log.info("hello world TestAopInService");
+
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()) .getRequest();
+
+
+		String token = request.getHeader("token");
+		log.info("TestAopInService token: " + token);
+
+		log.info("hello world TestAopInService");
 	}
     
 	@Override
