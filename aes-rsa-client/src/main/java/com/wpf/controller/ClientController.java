@@ -4,12 +4,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import com.wpf.annotation.TestAnno;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wpf.feign.TestFeign;
@@ -163,5 +161,11 @@ public class ClientController {
 		map.put("phone", phone);
 		map.put("test", test);
 		return map;
+	}
+
+	@GetMapping("/hello")
+	@TestAnno
+	public String hello(){
+		return "hello world";
 	}
 }

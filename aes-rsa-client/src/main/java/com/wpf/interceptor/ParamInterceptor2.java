@@ -26,7 +26,7 @@ public class ParamInterceptor2 implements HandlerInterceptor {
         String token = httpServletRequest.getHeader("token");
         //LOG.info(token)
        
-        if(!"aOXnjYZyn==".equals(token)){
+        if(!"aOXnjYZ".equals(token)){
             PrintWriter writer = null;
             httpServletResponse.setCharacterEncoding("UTF-8");
             httpServletResponse.setContentType("text/html; charset=utf-8");

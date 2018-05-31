@@ -2,6 +2,7 @@ package com.wpf.interceptor;
 
 
 import org.apache.log4j.Logger;
+import org.springframework.core.PriorityOrdered;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,13 +15,17 @@ import java.util.Map;
 
 
 
-public class ParamInterceptor implements HandlerInterceptor {
+public class ParamInterceptor implements HandlerInterceptor  {
 
     private Logger LOG = Logger.getLogger(ParamInterceptor.class);
 
     @SuppressWarnings("rawtypes")
 	@Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
+
+
+        String token = httpServletRequest.getHeader("token");
+        LOG.info(token);
 
        /* Map<String,String> params = new HashMap<String,String>();
         Map<String, String[]> requestParams = httpServletRequest.getParameterMap();
@@ -39,7 +44,7 @@ public class ParamInterceptor implements HandlerInterceptor {
             LOG.info(valueStr);
 
         }*/
-
+        LOG.info("hello world ParamInterceptor");
         return true;
        
 		/*Map requestParams = httpServletRequest.getParameterMap();
@@ -71,4 +76,6 @@ public class ParamInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
 
     }
+
+
 }
