@@ -3,4 +3,18 @@ spring:
     active: dev
   application:
     name: aes-rsa-client
- 
+  boot:
+      admin:
+        url: http://localhost:8889 #监控服务器地址
+        client:
+          name: ${spring.application.name} #客户端名称
+
+management:
+  security:
+    enabled: false # 需要关闭
+
+# 一些版本信息
+info:
+  groupId: @project.groupId@
+  artifactId: @project.artifactId@
+  version: @project.version@
