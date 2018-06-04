@@ -4,10 +4,10 @@ spring:
   application:
     name: aes-rsa-client
   boot:
-      admin:
-        url: http://localhost:8889 #监控服务器地址
-        client:
-          name: ${spring.application.name} #客户端名称
+    admin:
+      url: http://localhost:8889 #监控服务器地址
+      client:
+        name: ${spring.application.name} #客户端名称
 
 management:
   security:
