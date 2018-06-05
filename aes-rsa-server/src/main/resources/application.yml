@@ -3,11 +3,11 @@ spring:
     active: dev
   application:
     name: aes-rsa-server
-  boot:
-      admin:
-        url: http://localhost:8889 #监控服务器地址
-        client:
-          name: ${spring.application.name} #客户端名称
+#  boot:
+#      admin:
+#        url: http://localhost:8889 #监控服务器地址
+#        client:
+#          name: ${spring.application.name} #客户端名称
 management:
   security:
     enabled: false # 需要关闭

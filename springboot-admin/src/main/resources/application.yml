@@ -2,13 +2,31 @@ server:
   port: 8889
 
 spring:
-  boot:
-    admin:
-      url: http://localhost:8889 #监控服务器地址
-      client:
-        name: wpf_server #客户端名称
+#  boot:
+#    admin:
+#      url: http://localhost:8889 #监控服务器地址
+#      client:
+#        name: ${spring.application.name} #客户端名称
   application:
     name: springboot-admin
+  mail:
+    host: smtp.qq.com
+    username: 1304070598@qq.com
+    password: tctoqdxydeoebafe # qq的话：授权码
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+    default-encoding: UTF-8
+  boot:
+    admin:
+      notify:
+        mail:
+          to: 417350264@qq.com
+          from: 1304070598@qq.com
 
 # 一些版本信息
 info:
@@ -16,7 +34,16 @@ info:
   artifactId: @project.artifactId@
   version: @project.version@
 
+
+
 eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
   client:
+    registryFetchIntervalSeconds: 5
     serviceUrl:
-      defaultZone: http://127.0.0.1:8761/eureka/
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
+
+management:
+  security:
+    enabled: false
