@@ -8,11 +8,8 @@
   	<module>aes-rsa-util</module>
   	<module>aes-rsa-server</module>
   	<module>aes-rsa-client</module>
-
-
-
-
   	<module>aes-rsa-eureka</module>
+
   </modules>
   
   <parent>
