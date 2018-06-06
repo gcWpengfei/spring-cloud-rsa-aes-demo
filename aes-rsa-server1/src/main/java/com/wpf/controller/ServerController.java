@@ -1,17 +1,13 @@
 package com.wpf.controller;
 
-import java.util.TreeMap;
-
+import com.alibaba.fastjson.JSON;
+import com.wpf.util.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.fastjson.JSON;
-import com.wpf.util.AES;
-import com.wpf.util.EncryUtil;
-import com.wpf.util.RSA;
-import com.wpf.util.RandomUtil;
-import com.wpf.util.Req;
+import java.util.TreeMap;
+
 
 @RestController
 public class ServerController {
@@ -100,7 +96,6 @@ public class ServerController {
 
 	@GetMapping("/hello")
 	public String hello(){
-		return "hello world, aes rsa server0";
+		return "hello world, aes rsa server1";
 	}
-
 }

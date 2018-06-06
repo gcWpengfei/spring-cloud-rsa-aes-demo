@@ -6,9 +6,10 @@
 		<artifactId>com.wpf</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>aes-rsa-client</artifactId>
+	<artifactId>aes-rsa-server1</artifactId>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -17,15 +18,13 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-feign</artifactId>
-		</dependency>
+		
 		<dependency>
 			<groupId>Aes-Rsa</groupId>
 			<artifactId>aes-rsa-util</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
 		<dependency>
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-client</artifactId>
@@ -36,22 +35,8 @@
 			<groupId>org.jolokia</groupId>
 			<artifactId>jolokia-core</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.16.20</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>4.3.12.RELEASE</version>
-		</dependency>
+
+
 	</dependencies>
 
 </project>

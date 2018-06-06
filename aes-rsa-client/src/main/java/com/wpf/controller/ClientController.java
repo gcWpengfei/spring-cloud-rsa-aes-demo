@@ -166,6 +166,8 @@ public class ClientController {
 	@GetMapping("/hello")
 	@TestAnno
 	public String hello(){
-		return "hello world";
+		return testFeign.hello();
 	}
+
+
 }

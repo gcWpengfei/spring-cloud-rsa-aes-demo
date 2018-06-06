@@ -85,7 +85,10 @@ public class RequestFilter implements Filter {
      */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest http_req = (HttpServletRequest)request;
+
+        chain.doFilter(request, response);
+
+        /*HttpServletRequest http_req = (HttpServletRequest)request;
         AMHttpServletRequestWrapper amHttpServletRequestWrapper = new AMHttpServletRequestWrapper(http_req, http_req.getParameterMap());
 
         Map<String,String> params = new HashMap<String,String>();
@@ -103,9 +106,9 @@ public class RequestFilter implements Filter {
             params.put(name, valueStr);
         }
 
-        /*
+        *//*
         * 只修改data, encryptkey
-         */
+         *//*
         final String data = params.get("data");
         final String encryptkey = params.get("encryptkey");
 
@@ -130,9 +133,9 @@ public class RequestFilter implements Filter {
 
             JSONObject jsonObj = JSONObject.parseObject(dataAes);
 
-             /*
+             *//*
              * 直接遍历  无序遍历
-             */
+             *//*
             for (Map.Entry<String, Object> entry : jsonObj.entrySet()) {
                 System.out.println(entry.getKey() + ":" + entry.getValue());
                 amHttpServletRequestWrapper.setParameter( entry.getKey(), (String)entry.getValue());
@@ -142,7 +145,7 @@ public class RequestFilter implements Filter {
             System.out.println("验签失败");
 
         }
-        chain.doFilter(amHttpServletRequestWrapper, response);
+        chain.doFilter(amHttpServletRequestWrapper, response);*/
     }
 
     @Override

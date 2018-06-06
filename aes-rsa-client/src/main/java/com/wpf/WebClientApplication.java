@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients
-@ComponentScan(basePackages={"com.wpf"})
+@ComponentScan
 public class WebClientApplication {
 
     public static void main(String[] args){
