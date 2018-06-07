@@ -9,6 +9,7 @@
   	<module>aes-rsa-server</module>
   	<module>aes-rsa-client</module>
   	<module>aes-rsa-eureka</module>
+	  <module>aes-rsa-email</module>
 
   </modules>
   

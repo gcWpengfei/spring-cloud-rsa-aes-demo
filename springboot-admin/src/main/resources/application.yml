@@ -11,8 +11,8 @@ spring:
     name: springboot-admin
   mail:
     host: smtp.qq.com
-    username: 1304070596@qq.com
-    password: tctoqdxydeoebafe # qq的话：授权码
+    username: 1304070598@qq.com
+    password: mbaqizkkzjcqgfbe
     properties:
       mail:
         smtp:
@@ -25,8 +25,8 @@ spring:
     admin:
       notify:
         mail:
-          to: 417350264@qq.com
-          from: 1304070596@qq.com
+          to: 3354371617@qq.com
+          from: 1304070598@qq.com
 
 # 一些版本信息
 info:
