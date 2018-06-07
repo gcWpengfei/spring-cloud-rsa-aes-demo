@@ -20,6 +20,7 @@ public class TestController {
         return "ok";
     }
 
+    @GetMapping("/testHtmlMail")
     public String testHtmlMail() throws Exception {
         String content="<html>\n" +
                 "<body>\n" +
