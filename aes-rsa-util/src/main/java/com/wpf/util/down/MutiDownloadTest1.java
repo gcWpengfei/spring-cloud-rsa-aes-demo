@@ -8,7 +8,15 @@ import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-
+/**
+ * 多线程下载和断点续传
+ *
+ * @Author: wpf
+ * @Date: 16:42 2018/6/12
+ * @Description: 
+ * @param  * @param null  
+ * @return   
+ */
 public class MutiDownloadTest1 {
     private static final int    THREAD_COUNT    = 5;
     private static final String    DOWNLOAD_URL    = "http://down.360safe.com/se/360se9.1.0.426.exe";
