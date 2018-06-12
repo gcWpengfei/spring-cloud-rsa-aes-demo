@@ -1,4 +1,4 @@
-package com.wpf.util;
+package com.wpf.util.down;
 
 
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.net.URL;
 public class MutiDownloadTest {
     private static final int    THREAD_COUNT    = 5;
     private static final String    DOWNLOAD_URL    = "http://down.360safe.com/se/360se9.1.0.426.exe";
-    private static final String    fileName        = "D:\\l\\sts-bundle/360.exe";
+    private static final String    fileName        = "F:\\1\\test\\2/3601.exe";
 
     public static void main(String[] args) {
 

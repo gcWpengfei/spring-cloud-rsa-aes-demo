@@ -1,4 +1,4 @@
-package com.wpf.util;
+package com.wpf.util.down;
 
 
 import java.io.File;
@@ -9,10 +9,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class MutiDownloadDugTest {
+public class MutiDownloadTest1 {
     private static final int    THREAD_COUNT    = 5;
     private static final String    DOWNLOAD_URL    = "http://down.360safe.com/se/360se9.1.0.426.exe";
-    private static final String    fileName        = "D:\\l\\sts-bundle/360.exe";
+    private static final String    fileName        = "F:\\1\\test\\2/360.exe";
+     static final String    filePath        = "F:\\1\\test\\2/";
 
     public static void main(String[] args) {
 
@@ -81,12 +82,7 @@ class DownloadThreadTest1 implements Runnable {
     private RandomAccessFile randomAccessFile;
     private InputStream inputStream;
 
-    /**
-     * 进度文件
-     */
-    private RandomAccessFile progressRaf;
-
-    DownloadThreadTest1(String url, String fileName, int threadId, long startIndex, long endIndex) {
+    public DownloadThreadTest1(String url, String fileName, int threadId, long startIndex, long endIndex) {
         super();
         this.url = url;
         this.fileName = fileName;
@@ -98,8 +94,25 @@ class DownloadThreadTest1 implements Runnable {
 
     @Override
     public void run() {
-
+        RandomAccessFile downThreadStream = null;
+        /*
+             * 查看临时文件
+             */
+        File downThreadFile = new File(MutiDownloadTest1.filePath, "wpf_thread_"+threadId+".dt");
         try {
+
+            if(downThreadFile.exists()){
+                downThreadStream = new RandomAccessFile(downThreadFile,"rwd");
+                String startIndex_str = downThreadStream.readLine();
+                if(null == startIndex_str || "".equals(startIndex_str)){
+                } else {
+                    this.startIndex = Long.parseLong(startIndex_str) - 1; // //设置下载起点
+                }
+            } else {
+                downThreadStream = new RandomAccessFile(downThreadFile, "rwd");
+            }
+
+
             httpURLConnection = (HttpURLConnection) new URL(url + "?ts=" + System.currentTimeMillis()).openConnection();
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.setConnectTimeout(8000);
@@ -108,25 +121,6 @@ class DownloadThreadTest1 implements Runnable {
              * 设置请求范围.
              */
             httpURLConnection.setRequestProperty("RANGE", "bytes=" + startIndex + "-" + endIndex);
-
-            File progressFile = new File(String.valueOf(threadId));
-            /**
-             * 判断进度文件是否存在,不存在则创建,并且存入startIndex的值
-             */
-            if(progressFile.exists()){
-                progressRaf = new RandomAccessFile(progressFile, "rwd");
-            } else {
-                progressFile.createNewFile();
-                progressRaf = new RandomAccessFile(progressFile, "rwd");
-                progressRaf.write(String.valueOf(startIndex).getBytes());
-            }
-
-            /**
-             * 这时进度文件一定存在,就读取上次结束为止 若为第一次下载,读取的依旧是startIndex的值
-             */
-            progressRaf.seek(0);
-            startIndex = Long.valueOf(progressRaf.readLine());
-
 
             /**
              * 当请求部分数据成功的时候,返回http状态码206
@@ -143,27 +137,30 @@ class DownloadThreadTest1 implements Runnable {
                 byte[] bytes = new byte[1024];
                 int len;
                 int total = 0;
-                long position = startIndex + total;
                 while((len = inputStream.read(bytes)) != -1){
                     total += len;
                     //log.info("线程" + threadId + ":" + total);
                     System.out.println("线程: " +  threadId + ":" + total);
                     randomAccessFile.write(bytes, 0, len);
 
-                    progressRaf.seek(0);
-                    progressRaf.write(String.valueOf(position).getBytes());
+                     /*
+                         * 将当前现在到的位置保存到文件中
+                         */
+                    downThreadStream.seek(0);
+                    downThreadStream.write((startIndex + total + "").getBytes("UTF-8"));
                 }
 
-                progressFile.delete();
-                /**
-                 * 下载完毕就把进度文件删除
-                 */
+
             }
         } catch (IOException e) {
             e.printStackTrace();
             // log.info(ExceptionUtils.getFullStackTrace(e));
         } finally {
             try {
+                if(null != downThreadStream){
+                    downThreadStream.close();
+
+                }
                 if(null != httpURLConnection){
                     httpURLConnection.disconnect();
                 }
@@ -173,15 +170,16 @@ class DownloadThreadTest1 implements Runnable {
                 if(null != randomAccessFile){
                     randomAccessFile.close();
                 }
-                if (progressRaf != null) {
-                    progressRaf.close();
-                    progressRaf = null;
-                }
+                cleanTemp(downThreadFile);
             } catch (Exception e) {
                 e.printStackTrace();
                 //log.info(ExceptionUtils.getFullStackTrace(e));
             }
         }
     }
-}
 
+    //删除线程产生的临时文件
+    private synchronized void cleanTemp(File file){
+        file.delete();
+    }
+}
