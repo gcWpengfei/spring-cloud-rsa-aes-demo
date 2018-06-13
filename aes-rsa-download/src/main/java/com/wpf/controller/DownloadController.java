@@ -17,6 +17,15 @@ import java.util.zip.ZipOutputStream;
 @RequestMapping("/t")
 public class DownloadController {
 
+    /**
+     * 多文件边压缩边下载
+     *
+     * @Author: wpf
+     * @Date: 11:09 2018/6/13
+     * @Description:
+     * @param  * @param null
+     * @return
+     */
     @ResponseBody
     @GetMapping("/download")
     public void downloadFiles(HttpServletRequest request, HttpServletResponse response){
