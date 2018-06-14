@@ -12,22 +12,24 @@ spring:
   mail:
     host: smtp.qq.com
     username: 1304070598@qq.com
-    password: mebaqizkkzjcqgfbe
+    password: mbaqizkkzjcqgfbe
     properties:
       mail:
         smtp:
+          ssl:
+           enable: true
           auth: true
           starttls:
             enable: true
             required: true
     default-encoding: UTF-8
+    port: 465
   boot:
     admin:
       notify:
         mail:
           to: 3354371617@qq.com
           from: 1304070598@qq.com
-
 # 一些版本信息
 info:
   groupId: @project.groupId@
