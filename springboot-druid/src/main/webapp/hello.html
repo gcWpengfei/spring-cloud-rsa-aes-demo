@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<script src="/tools/jquery/jquery-3.2.1.min.js"></script>
+<script src="/js/ajaxDataController.js"></script>
+<script src="/js/commonDataController.js"></script>
+<script src="/tools/vue.min.js"></script>
+
+<body>
+<div id="app">
+
+    hello world;
+    <br>
+    {{msg}}
+
+</div>
+
+</body>
+</html>
+
+<script>
+    var vue = new Vue({
+        el:"#app",
+        data:{
+            msg:''
+        },
+        created: function () {
+            commonDataController.test(null, function (data) {
+                if(data.status == 200){
+                    vue.msg = data.resultObject;
+                }
+            })
+        },
+        methods:{
+
+            pay: function(orderNumber){
+
+            }
+        }
+    });
+
+</script>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.InfoCompanyUserMapper">
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+	    delete from info_company_user
+	    where id = #{id,jdbcType=VARCHAR}
+	  </delete>
+  
+
+    <!-- <update id="updateBatch" parameterType="java.util.List">
+        update info_company_user set
+        status=
+        <foreach collection="list" item="item" index="index" separator=" " open="case username" close="end">
+            when #{item.username} then #{item.status}
+        </foreach>
+
+        where username in
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item.username}
+        </foreach>
+       
+    </update> -->
+    
+    <update id="updateBatch" parameterType="java.util.List">    
+            <foreach close=";" collection="list" index="index" item="record" open="" separator=";">    
+                update info_company_user set status=#{record.status}    
+                where username=#{record.username}   
+            </foreach>  
+    </update>   
+
+
+
+</mapper>

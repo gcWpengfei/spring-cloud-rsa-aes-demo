@@ -30,13 +30,22 @@ spring:
         mail:
           to: 3354371617@qq.com
           from: 1304070598@qq.com
+          ignore-changes: "UNKNOWN"
+          subject: "#{application.name} (#{application.id}) is #{to.status} wpf"
+          text: "#{application.name} (#{application.id})\nstatus changed from #{from.status} to #{to.status}\n\n#{application.healthUrl} wpf"
+      url:
+      client:
+        service-url:
+        metadata:
+          user.name: admin
+          user.password: admin
+      username: admin
+      password: admin
 # 一些版本信息
 info:
   groupId: @project.groupId@
   artifactId: @project.artifactId@
   version: @project.version@
-
-
 
 eureka:
   instance:
