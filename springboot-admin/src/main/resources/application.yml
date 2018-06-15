@@ -11,8 +11,8 @@ spring:
     name: springboot-admin
   mail:
     host: smtp.qq.com
-    username: 1304070598@qq.com
-    password: mbaqizkkzjcqgfbe
+    username: XX@qq.com
+    password: mebaqizkkzjcqgfbe
     properties:
       mail:
         smtp:
@@ -28,8 +28,8 @@ spring:
     admin:
       notify:
         mail:
-          to: 3354371617@qq.com
-          from: 1304070598@qq.com
+          to: XX@qq.com
+          from: XX@qq.com
           ignore-changes: "UNKNOWN"
           subject: "#{application.name} (#{application.id}) is #{to.status} wpf"
           text: "#{application.name} (#{application.id})\nstatus changed from #{from.status} to #{to.status}\n\n#{application.healthUrl} wpf"
